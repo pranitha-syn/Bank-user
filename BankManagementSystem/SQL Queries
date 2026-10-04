@@ -1,0 +1,22 @@
+CREATE DATABASE bankdb;
+USE bankdb;
+
+CREATE TABLE users(
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE customers(
+    customer_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    phone VARCHAR(15),
+    address VARCHAR(200),
+    FOREIGN KEY(user_id) REFERENCES users(user_id)
+);
+
+INSERT INTO users(username,password,role)
+VALUES('admin','admin123','ADMIN');
